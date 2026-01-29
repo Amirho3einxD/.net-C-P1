@@ -1,26 +1,70 @@
 import { Box, Button, Card, CardActions, CardContent, Chip, Typography } from "@mui/material"
+import type { Activity } from "../../../lib/type";
+import { useActivities } from "../../../lib/hooks/useActivities";
 
-type Props={
-    activity:Activity
-    selectActivity:(id:string)=> void;
-    deleteActivity:(id:string)=>void;
+type Props = {
+  activity: Activity
+  selectActivity: (id: string) => void;
 }
 
-export default function ActivityCard({deleteActivity,activity,selectActivity}:Props) {
+export default function ActivityCard({ activity, selectActivity }: Props) {
+  
+  const {deleteActivity}=useActivities();
   return (
-    <Card sx={{borderRadius:3}}>
+    
+    <Card sx={{ borderRadius: 3 }}>
       <CardContent>
-        <Typography variant="h5">{activity.city}</Typography>
-        <Typography sx={{color:'text.secondary',mb:1}}>{activity.date}</Typography>
-        <Typography variant="body2">{activity.latitude}</Typography>
+        <Typography variant="h5">
+          {activity.title}
+        </Typography>
+
+        <Typography sx={{ color: 'text.secondary', mb: 1 }}>
+          {new Date(activity.date).toLocaleDateString()}
+        </Typography>
+
+        <Typography variant="body2">
+          {activity.country} - {activity.address}
+        </Typography>
+
+        <Typography variant="body2" sx={{ mt: 1 }}>
+          Capacity: {activity.reservedCount} / {activity.capacity}
+        </Typography>
+
+        <Typography variant="body2" sx={{ mt: 1 }}>
+          Price: ${activity.price}
+        </Typography>
       </CardContent>
-      <CardActions sx={{display:'flex',justifyContent:'space-between',pb:2}}>
-        <Chip label={activity.cancelled} variant="outlined"/>
-        <Box sx={{display:'flex', gap:2}}>
-<Button onClick={()=>selectActivity(activity.id)} size="medium"variant="contained">View</Button>
-<Button onClick={()=>deleteActivity(activity.id)} size="medium"variant="contained" color="error">Delete</Button>
-        </Box> 
+
+      <CardActions
+        sx={{ display: 'flex', justifyContent: 'space-between', pb: 2 }}
+      >
+        <Chip
+          label={activity.status}
+          color={activity.cancelled ? 'error' : 'success'}
+          variant="outlined"
+        />
+
+        <Box sx={{ display: 'flex', gap: 2 }}>
+          <Button
+            onClick={() => selectActivity(activity.id)}
+            size="medium"
+            variant="contained"
+          >
+            View
+          </Button>
+
+          <Button
+            onClick={() => deleteActivity.mutate(activity.id)}
+            disabled={deleteActivity.isPending}
+            size="medium"
+            variant="contained"
+            color="error"
+          >
+            Delete
+          </Button>
+        </Box>
       </CardActions>
     </Card>
+
   )
 }
