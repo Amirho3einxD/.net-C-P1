@@ -17,6 +17,9 @@ public class BaseActivityValidator<T, TDto> : AbstractValidator<T> where TDto : 
               .NotEmpty().WithMessage("Description is required")
               .MaximumLength(200).WithMessage("Description must not exeed 200 charecters");
 
+        RuleFor(x => selector(x).Category)
+        .NotEmpty().WithMessage("Category is required"); 
+
         RuleFor(x => selector(x).Date)
               .GreaterThan(DateTime.UtcNow).WithMessage("Date must be in future");
 
@@ -28,6 +31,8 @@ public class BaseActivityValidator<T, TDto> : AbstractValidator<T> where TDto : 
 
         RuleFor(x => selector(x).CreatedBy)
         .NotEmpty().WithMessage("Creator name is required");
+        RuleFor(x => selector(x).Status)
+        .NotEmpty().WithMessage("Status name is required");
         RuleFor(x => selector(x).Latitude)
         .NotEmpty().WithMessage("Latitude is required")
         .InclusiveBetween(-90, 90).WithMessage("Latitude mut be between -90 and 90");

@@ -27,7 +27,7 @@ export default function ActivityCard({ activity }: Props) {
             fontSize: 20
           }}
           subheader={<>
-            Hosted by{' '}<Link to={`/profiles/Mamad`}>Mamad</Link>
+            Hosted by{' '}<Link to={`/profiles/Mamad`}>{activity.createdBy}</Link>
           </>
           }
         />

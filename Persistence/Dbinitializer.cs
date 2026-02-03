@@ -14,7 +14,6 @@ public class Dbinitializer
             new Activity
             {
                 Date = DateTime.Now.AddDays(-2),
-                Cancelled = false,
                 Latitude = 40.7128,
                 Longitude = -74.0060,
                 Country = "USA",
@@ -22,18 +21,14 @@ public class Dbinitializer
                 Title = "New York Event",
                 Description = "Description for New York event",
                 Capacity = 100,
-                ReservedCount = 10,
-                Status = "Active",
-                IsPublic = true,
+                Status = "pending",
                 Price = 50.0,
                 CreatedBy = "Admin",
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow
+                Category="food"
             },
             new Activity
             {
                 Date = DateTime.Now.AddDays(-1),
-                Cancelled = true,
                 Latitude = 34.0522,
                 Longitude = -118.2437,
                 Country = "USA",
@@ -41,32 +36,10 @@ public class Dbinitializer
                 Title = "Los Angeles Event",
                 Description = "Description for Los Angeles event",
                 Capacity = 80,
-                ReservedCount = 20,
-                Status = "Cancelled",
-                IsPublic = false,
+                Status = "pending",
                 Price = 40.0,
                 CreatedBy = "Admin",
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow
-            },
-            new Activity
-            {
-                Date = DateTime.Now,
-                Cancelled = false,
-                Latitude = 51.5074,
-                Longitude = -0.1278,
-                Country = "UK",
-                Address = "789 London Rd, London",
-                Title = "London Event",
-                Description = "Description for London event",
-                Capacity = 150,
-                ReservedCount = 50,
-                Status = "Pending",
-                IsPublic = true,
-                Price = 60.0,
-                CreatedBy = "Admin",
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow
+                Category="music"
             }
         };
 
