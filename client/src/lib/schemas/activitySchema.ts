@@ -1,16 +1,6 @@
 import * as z from "zod";
+import { requiredString,requiredNumber } from "../util/util";
 
-const requiredString = (fieldName: string) =>
-  z.string<string>({
-    error: (issue) => issue.input === undefined
-      ? `${fieldName} is required`
-      : "Not a string"
-  });
-
-const requiredNumber = (fieldName: string)=>
-  z.coerce.number<number>({
-     error: () => `${fieldName} is required`,
-  })
 
 export const activitySchema = z.object({
   title: requiredString('Title'),
