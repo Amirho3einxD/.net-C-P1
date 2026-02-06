@@ -1,14 +1,14 @@
 using System;
-using System.ComponentModel.DataAnnotations;
-namespace Domain;
+using Application.Profiles.DTOs;
 
-public class Activity
+namespace Application.Activities.DTO;
+
+public class ActivityDto
 {
-    [Key]
-    public string Id { get; set; } = Guid.NewGuid().ToString();
-    public required DateTime Date { get; set; }
-    public required double Latitude { get; set; }
-    public required double Longitude { get; set; }
+    public required string Id { get; set; }
+    public DateTime Date { get; set; }
+    public  double Latitude { get; set; }
+    public  double Longitude { get; set; }
     public required string Country { get; set; }
     public required string Address { get; set; }
     public required string Title { get; set; }
@@ -18,8 +18,10 @@ public class Activity
     public required string Status { get; set; }
     public required double Price { get; set; }
     public required string CreatedBy { get; set; }
-    public bool isCancelled { get; set; } =false;
+    public bool isCancelled { get; set; }
+    public required string HostDisplayName { get; set; }
+    public required string HostId { get; set; }
 
     //navigation properties
-    public ICollection<ActivityAttendee> Attendees { get; set; }=[];
+    public ICollection<UserProfile> Attendees { get; set; } = [];
 }
