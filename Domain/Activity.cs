@@ -17,7 +17,6 @@ public class Activity
     public required string Category { get; set; }
     public required string Status { get; set; }
     public required double Price { get; set; }
-    public required string CreatedBy { get; set; }
     public bool isCancelled { get; set; } =false;
 
     //navigation properties

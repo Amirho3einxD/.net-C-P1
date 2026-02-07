@@ -11,7 +11,6 @@ export const activitySchema = z.object({
         ? 'Date is required'
         : 'Invalid date',
   }),
-  createdBy: requiredString('Creator name'),
   status: requiredString('Status'),
   category: requiredString('Category'),
   location: z.strictObject(

@@ -74,7 +74,6 @@ export default function Activityform() {
           <NumberInput label='Capacity' control={control} name="capacity" />
         </Box>
         <LocationInput control={control} label="Enter the location" name="location" />
-        <TextInput label='Created By' control={control} name='createdBy' />
 
         <Box display='flex' justifyContent='end' gap={3}>
           <Button color='inherit'>Cancel</Button>

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class AddIsCancelledToEntity : Migration
+    public partial class Nmigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -27,7 +27,6 @@ namespace Persistence.Migrations
                     Category = table.Column<string>(type: "TEXT", nullable: false),
                     Status = table.Column<string>(type: "TEXT", nullable: false),
                     Price = table.Column<double>(type: "REAL", nullable: false),
-                    CreatedBy = table.Column<string>(type: "TEXT", nullable: false),
                     isCancelled = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
