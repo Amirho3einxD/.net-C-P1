@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
 import { useController, type UseControllerProps, type FieldValues } from "react-hook-form"
-import { type LocationIQSuggestion } from "../../../lib/type";
 import { Box, debounce, List, ListItemButton, TextField, Typography } from "@mui/material";
 import axios from "axios";
 
@@ -23,8 +22,7 @@ export default function LocationInput<T extends FieldValues>(props: Props<T>) {
         }
     },[field.value])
 
-    const locationIQToken = 'pk.464684305149b57d2711505f6b0a3414';
-    const locationUrl = `https://api.locationiq.com/v1/autocomplete?key=${locationIQToken}&limit=5&dedupe=1&`;
+    const locationUrl = `https://api.locationiq.com/v1/autocomplete?key=pk.464684305149b57d2711505f6b0a3414&limit=5&dedupe=1&`;
 
     const fetchSuggestions = useMemo(
 
