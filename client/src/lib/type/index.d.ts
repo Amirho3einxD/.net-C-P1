@@ -1,36 +1,42 @@
 type Activity = {
-  id: string;
-  date: Date;
-  latitude: number;
-  longitude: number;
-  country: string;
-  address: string;
-  title: string;
-  description: string;
-  capacity: number;
-  status: string;
-  price: number;
-  category: string;
-  attendees:Profile[]
-  isGoing:boolean;
-  isHost:boolean;
-  isCancelled:boolean;
-  hostId:string;
-  hostDisplayName:string;
+  id: string
+  date: Date
+  latitude: number
+  longitude: number
+  country: string
+  address: string
+  title: string
+  description: string
+  capacity: number
+  status: string
+  price: number
+  category: string
+  attendees: Profile[]
+  isGoing: boolean
+  isHost: boolean
+  isCancelled: boolean
+  hostId: string
+  hostDisplayName: string
+  hostImageUrl: string
 }
 
-type Profile={
-  id:string
-  displayName:string
-  bio?:string
-  imageUrl?:string
+type Photo = {
+  id: string
+  url: string
 }
 
-type User ={
-  id:string
-  email:string
-  displayName:string
-  imageUrl?:string
+type Profile = {
+  id: string
+  displayName: string
+  bio?: string
+  imageUrl?: string
+}
+
+type User = {
+  id: string
+  email: string
+  displayName: string
+  imageUrl?: string
 }
 
 

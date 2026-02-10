@@ -5,7 +5,7 @@ import { useStore } from "../../lib/hooks/useStore";
 import { Observer } from "mobx-react-lite";
 import { useAccount } from "../../lib/hooks/useAccount";
 import MenuItemLink from "../shared/component/MenuItemLink";
-import UserMenu from "./userMenu";
+import UserMenu from "./UserMenu";
 
 
 export default function NavBar() {
