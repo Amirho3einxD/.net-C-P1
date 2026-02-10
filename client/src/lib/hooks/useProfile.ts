@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import agent from "../api/agent"
 import { useMemo } from "react";
+import type { EditProfileSchema } from "../schemas/editProfileSchema";
 
 
 export const useProfile = (id?: string) => {
@@ -59,34 +60,58 @@ export const useProfile = (id?: string) => {
         mutationFn: async (photo: Photo) => {
             await agent.put(`/profiles/${photo.id}/setMain`)
         },
-        onSuccess:(_,photo)=>{
-            queryClient.setQueryData(['user'],(userData:User)=>{
-                if(!userData) return userData;
-                return{
+        onSuccess: (_, photo) => {
+            queryClient.setQueryData(['user'], (userData: User) => {
+                if (!userData) return userData;
+                return {
                     ...userData,
-                    imageUrl:photo.url
+                    imageUrl: photo.url
                 }
             });
-            queryClient.setQueryData(['profile',id],(profile:Profile)=>{
-                if(!profile) return profile;
-                return{
+            queryClient.setQueryData(['profile', id], (profile: Profile) => {
+                if (!profile) return profile;
+                return {
                     ...profile,
-                    imageUrl:photo.url
+                    imageUrl: photo.url
                 }
             })
         }
     })
 
-    const deletephoto=useMutation({
-        mutationFn:async (photoId:string)=>{
+    const deletephoto = useMutation({
+        mutationFn: async (photoId: string) => {
             await agent.delete(`/profiles/${photoId}/photos`)
         },
-        onSuccess:(_,photoId)=>{
-            queryClient.setQueryData(['photos',id],(photos:Photo[])=>{
-                return photos?.filter(x=>x.id!==photoId)
+        onSuccess: (_, photoId) => {
+            queryClient.setQueryData(['photos', id], (photos: Photo[]) => {
+                return photos?.filter(x => x.id !== photoId)
             })
         }
+    });
+
+    const updateProfile = useMutation({
+        mutationFn: async (profile: EditProfileSchema) => {
+            await agent.put(`/profiles/edit-profile`, profile);
+        },
+        onSuccess: (_, profile) => {
+            queryClient.setQueryData(['profile', id], (data: Profile) => {
+                if (!data) return data;
+                return {
+                    ...data,
+                    displayName: profile.displayName,
+                    bio: profile.bio
+                }
+            });
+            queryClient.setQueryData(['user'], (userData: User) => {
+                if (!userData) return userData;
+                return {
+                    ...userData,
+                    displayName: profile.displayName
+                }
+            });
+        }
     })
+
 
     const isCurrentUser = useMemo(() => {
         return id === queryClient.getQueryData<User>(['user'])?.id
@@ -100,7 +125,8 @@ export const useProfile = (id?: string) => {
         isCurrentUser,
         uploadPhoto,
         setMainPhoto,
-        deletephoto
+        deletephoto,
+        updateProfile
     }
 }
 

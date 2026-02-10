@@ -25,19 +25,25 @@ public class ProfilesController : ApiController
     [HttpDelete("{photoId}/photos")]
     public async Task<ActionResult> DeletePhoto(string photoId)
     {
-        return HandleResult(await Mediator.Send(new DeletePhoto.Command{PhotoId=photoId}));
+        return HandleResult(await Mediator.Send(new DeletePhoto.Command { PhotoId = photoId }));
     }
 
     [HttpPut("{photoId}/setMain")]
     public async Task<ActionResult> SetMainPhoto(string photoId)
     {
-        return HandleResult(await Mediator.Send(new SetMainPhoto.Command{PhotoId=photoId}));
+        return HandleResult(await Mediator.Send(new SetMainPhoto.Command { PhotoId = photoId }));
     }
 
     [HttpGet("{userId}")]
     public async Task<ActionResult<UserProfile>> GetProfiles(string userId)
     {
-        return HandleResult(await Mediator.Send(new GetProfile.Query{UserId=userId}));
+        return HandleResult(await Mediator.Send(new GetProfile.Query { UserId = userId }));
+    }
+
+    [HttpPut("edit-profile")]
+    public async Task<ActionResult> UpdateProfile(EditProfile.Command command)
+    {
+        return HandleResult(await Mediator.Send(command));
     }
 
 }

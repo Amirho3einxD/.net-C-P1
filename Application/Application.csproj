@@ -28,6 +28,7 @@
     <Folder Include="Profiles\Commands\" />
     <Folder Include="Profiles\DTOs\" />
     <Folder Include="Profiles\Query\" />
+    <Folder Include="Profiles\Validators\" />
   </ItemGroup>
 
 </Project>
