@@ -15,6 +15,7 @@
   <ItemGroup>
     <Folder Include="Dtos\" />
     <Folder Include="Middleware\" />
+    <Folder Include="SignalR\" />
   </ItemGroup>
 
 </Project>
