@@ -35,10 +35,10 @@ public class Dbinitializer
     {
         var users = new List<User>
             {
-                new() {DisplayName="OozBeleb",UserName="OozBeleb@test.com",Email="OozBeleb@test.com"},
-                new() {DisplayName="Tom",UserName="tom@test.com",Email="tom@test.com"},
-                new() {DisplayName="Ali",UserName="ali@user.com",Email="ali@user.com"},
-                new() {DisplayName="Moz",UserName="moz@user.com",Email="moz@user.com"}
+                new() {Id="bob-id",DisplayName="Bob",UserName="bob@test.com",Email="bob@test.com"},
+                new() {Id="tom-id",DisplayName="Tom",UserName="tom@test.com",Email="tom@test.com"},
+                new() {Id="ali-id",DisplayName="Ali",UserName="ali@user.com",Email="ali@user.com"},
+                new() {Id="mmd-id",DisplayName="Mmd",UserName="mmd@user.com",Email="moz@user.com"}
             };
         if (!userManager.Users.Any())
         {
