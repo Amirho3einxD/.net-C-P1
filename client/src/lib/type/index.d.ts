@@ -1,3 +1,9 @@
+type PagedList<T,TCursor>={
+  items:T[]
+  nextCursor:TCursor
+}
+
+
 type Activity = {
   id: string
   date: Date
@@ -17,7 +23,7 @@ type Activity = {
   isCancelled: boolean
   hostId: string
   hostDisplayName: string
-  hostImageUrl: string
+  hostImageUrl?: string
 }
 
 type Photo = {

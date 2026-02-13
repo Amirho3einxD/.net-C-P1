@@ -15,10 +15,9 @@ export default function NavBar() {
 
         <Box sx={{flexGrow: 1}}>
             <AppBar
-                position="static"
+                position="fixed"
                 sx={{
-                    background: "linear-gradient(135deg, #6366F1 0%, #60A5FA 69%, #38BDF8 89%)",
-                    position: "relative"
+                    background: "linear-gradient(135deg, #6366F1 0%, #60A5FA 69%, #38BDF8 89%)"
                 }}
             >
                 <Container maxWidth='xl'>

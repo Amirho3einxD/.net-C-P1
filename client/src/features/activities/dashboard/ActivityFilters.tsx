@@ -1,36 +1,55 @@
-import { FilterList,Event } from "@mui/icons-material";
-import  { Box, ListItemText, MenuItem, MenuList, Paper, Typography } from "@mui/material";
+import { FilterList, Event } from "@mui/icons-material";
+import { Box, ListItemText, MenuItem, MenuList, Paper, Typography } from "@mui/material";
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css'
-export default function ActivityFilters() {
+import { useStore } from "../../../lib/hooks/useStore";
+import { observer } from "mobx-react-lite";
+
+
+const ActivityFilters = observer(function ActivityFilters() {
+  const { activityStore: { setFilter, setStartDate, filter, startDate } } = useStore();
   return (
-    <Box sx={{display:'flex',flexDirection:'column',gap:3,borderRadius:3}}>
-      <Paper sx={{p:3,borderRadius:3}}>
-          <Box sx={{width:'100%' }}>
-          <Typography variant="h6" sx={{display:'flex',alignItems:'center',mb:1,color:'primary.main'}}>
-               <FilterList sx={{mr:1}}/>
-                Filters
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, borderRadius: 3 }}>
+      <Paper sx={{ p: 3, borderRadius: 3 }}>
+        <Box sx={{ width: '100%' }}>
+          <Typography variant="h6" sx={{ display: 'flex', alignItems: 'center', mb: 1, color: 'primary.main' }}>
+            <FilterList sx={{ mr: 1 }} />
+            Filters
           </Typography>
           <MenuList>
-            <MenuItem>
-            <ListItemText primary='All events'/>
+            <MenuItem
+              selected={filter === 'all'}
+              onClick={() => setFilter('all')}
+            >
+              <ListItemText primary='All events' />
             </MenuItem>
-            <MenuItem>
-            <ListItemText primary='Im going'/>
+            <MenuItem
+              selected={filter === 'isGoing'}
+              onClick={() => setFilter('isGoing')}
+            >
+              <ListItemText primary='Im going' />
             </MenuItem>
-            <MenuItem>
-            <ListItemText primary='Im hosting'/>
+            <MenuItem
+              selected={filter === 'isHost'}
+              onClick={() => setFilter('isHost')}
+            >
+              <ListItemText primary='Im hosting' />
             </MenuItem>
           </MenuList>
-          </Box>
+        </Box>
       </Paper>
-      <Box component={Paper} sx={{width:'100%',p:3,borderRadius:3}}>
-        <Typography variant="h6" sx={{display:'flex',alignItems:'center',mb:1,color:'primary.main'}}>
-        <Event sx={{mr:1}}/>
-        Select date
+      <Box component={Paper} sx={{ width: '100%', p: 3, borderRadius: 3 }}>
+        <Typography variant="h6" sx={{ display: 'flex', alignItems: 'center', mb: 1, color: 'primary.main' }}>
+          <Event sx={{ mr: 1 }} />
+          Select date
         </Typography>
-        <Calendar/>
+        <Calendar
+          value={startDate}
+          onChange={date => setStartDate(date as Date)}
+        />
       </Box>
     </Box>
   )
-}
+})
+
+export default ActivityFilters;

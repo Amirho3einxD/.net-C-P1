@@ -1,12 +1,13 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 namespace Domain;
-
+[Index(nameof(Date))]
 public class Activity
 {
     [Key]
     public string Id { get; set; } = Guid.NewGuid().ToString();
-    public required DateTime Date { get; set; }
+    public  DateTime Date { get; set; }
     public required double Latitude { get; set; }
     public required double Longitude { get; set; }
     public required string Country { get; set; }
